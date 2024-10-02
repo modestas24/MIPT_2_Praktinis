@@ -42,6 +42,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -65,14 +66,14 @@ class MainActivity : ComponentActivity() {
                     floatingActionButton = {
                         CustomFloatingActionButton(
                             iconVector = Icons.Rounded.CheckCircle,
-                            text = "Count",
+                            text = stringResource(R.string.count),
                             onClick = {
                                 countText(text, count, current.value)
 
                                 if (count.intValue <= 0) {
                                     val toast = Toast.makeText(
                                         this,
-                                        "Field is empty",
+                                        getString(R.string.empty_field),
                                         Toast.LENGTH_SHORT
                                     )
                                     toast.show()
@@ -94,7 +95,7 @@ class MainActivity : ComponentActivity() {
                             modifier = Modifier.padding(horizontal = 32.dp)
                         ) {
                             CustomText(
-                                if (count.intValue <= 0) "Empty" else count.intValue.toString(),
+                                if (count.intValue <= 0) stringResource(R.string.empty_count) else count.intValue.toString(),
                                 modifier = Modifier.height(58.dp)
                             )
                             Spacer(Modifier.width(32.dp))
@@ -109,7 +110,7 @@ class MainActivity : ComponentActivity() {
                             ),
                             onValueChange = { text = it },
                             label = {
-                                Text("Enter text")
+                                Text(stringResource(R.string.enter_text))
                             },
                             leadingIcon = {
                                 Icon(
@@ -134,7 +135,7 @@ fun countText(text: String, state: MutableState<Int>, option: String = "letters"
     var value by state
     value = if (text.isEmpty()) 0
     else if (option == "letters") text.length
-    else if (option == "words") text.split(" ").count()
+    else if (option == "words") text.trim().replace("\\s+".toRegex(), " ").split(" ").count()
     else 0
 }
 

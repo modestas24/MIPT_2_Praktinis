@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">MIPT_2_Praktinis</string>
+
+    <string name="count">Count</string>
+    <string name="enter_text">Enter text</string>
+    <string name="empty_field">Field is empty</string>
+    <string name="empty_count">Empty</string>
 </resources>
