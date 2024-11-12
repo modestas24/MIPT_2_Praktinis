@@ -42,6 +42,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -96,7 +97,9 @@ class MainActivity : ComponentActivity() {
                         ) {
                             CustomText(
                                 if (count.intValue <= 0) stringResource(R.string.empty_count) else count.intValue.toString(),
-                                modifier = Modifier.height(58.dp)
+                                modifier = Modifier
+                                    .height(58.dp)
+                                    .testTag("CountOutput")
                             )
                             Spacer(Modifier.width(32.dp))
                             CustomSpinner(options, current)
@@ -123,6 +126,7 @@ class MainActivity : ComponentActivity() {
                                 .padding(horizontal = 32.dp)
                                 .wrapContentHeight(Alignment.CenterVertically)
                                 .defaultMinSize(minHeight = 58.dp)
+                                .testTag("CountInput")
                         )
                     }
                 }
